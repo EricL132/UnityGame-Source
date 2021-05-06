@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 public class ItemWorld : MonoBehaviour
 {
-    
+
     public static ItemWorld SpawnItemWorld(Vector3 position,Item item){
         Transform transform = Instantiate(ItemAssets.Instance.pfItemWorld, position, Quaternion.identity);
         ItemWorld itemWorld = transform.GetComponent<ItemWorld>();
@@ -33,4 +33,9 @@ public class ItemWorld : MonoBehaviour
     public void DestroySelf(){
         Destroy(gameObject);
     }
+
+     public static ItemWorld DropItem(Vector3 dropPos , Item item){
+        ItemWorld nitem= SpawnItemWorld(dropPos,item);
+        return  nitem;
+    } 
 }

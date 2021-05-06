@@ -8,6 +8,12 @@ public class UI_Inventory : MonoBehaviour
     private Inventory inventory;
     private Transform itemSlotContainer;
     private Transform itemSlotTemplate;
+        private Player player;
+
+    public void SetPlayer(Player player){
+        this.player = player;
+    }
+
     public void Awake(){
         itemSlotContainer = transform.Find("itemSlotContainer");
         itemSlotTemplate = itemSlotContainer.Find("itemSlotTemplate");
@@ -29,18 +35,21 @@ public class UI_Inventory : MonoBehaviour
         }
         int x = 0;
         int y = 0;
-        float itemSlotCellSize = 1.8f;
+        float itemSlotCellSize = 50f;
         foreach(Item item in inventory.GetItemList()){
            RectTransform itemSlotRectTransform = Instantiate(itemSlotTemplate,itemSlotContainer).GetComponent<RectTransform>();
            itemSlotRectTransform.gameObject.SetActive(true);
-     
+/*             itemSlotRectTransform.GetComponent<Button>().onClick.AddListener(()=>{
+                inventory.RemoveItem(item);
+                //ItemWorld.DropItem(player.GetPosition(),item)
+            }); */
            itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, y* itemSlotCellSize);
-           SpriteRenderer image = itemSlotRectTransform.Find("item").GetComponent<SpriteRenderer>();
+           Image image = itemSlotRectTransform.Find("item").GetComponent<Image>();
            image.sprite = item.GetSprite();  
-           TextMeshPro uiText = itemSlotRectTransform.Find("text").GetComponent<TextMeshPro>();
-           uiText.SetText(item.itemText.ToString());
+           Text uiText = itemSlotRectTransform.Find("text").GetComponent<Text>();
+           uiText.text = item.itemText.ToString();
            x++;
-           if(x>=3){
+           if(x>=1){
                x=0;
                y--;
            }

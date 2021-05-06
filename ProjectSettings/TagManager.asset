@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - InventoryBox
+  - InventoryCanvas
+  - Question
+  - QuestionInput
+  - Item
   layers:
   - Default
   - TransparentFX

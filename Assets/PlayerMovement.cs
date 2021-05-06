@@ -18,13 +18,16 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {   
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-        if(Input.GetButtonDown("Jump")){
+        if(Input.GetButtonDown("Jump") && permaBool.insideInput==false){
             jump = true;
         }
     }
 
     void FixedUpdate(){
-        controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
-        jump = false;
+        if(permaBool.insideInput==false){
+            controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
+            jump = false;
+        }
+  
     }
 }

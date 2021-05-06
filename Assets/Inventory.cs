@@ -18,4 +18,8 @@ public class Inventory {
     public List<Item> GetItemList(){
         return itemList;
     }
+
+    public void RemoveItem(Item item){
+        itemList.Remove(item);
+    }
 }
